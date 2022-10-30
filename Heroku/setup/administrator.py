@@ -18,8 +18,8 @@ async def unauthorised(message: Message):
     chatID = message.chat.id
     checking = message.from_user.mention
     text = (
-        f"**ᴏɴʟʏ ᴀᴅᴍɪɴs ᴄᴀɴ ᴅᴏ ᴛʜɪs !!**"
-        + f"\n❌ Delete Message Chats"
+        f"**يمكن للمشرفين فقط القيام بذلك !!**"
+        + f"\n❌ حذف رسائل الجروب"
     )
     try:
         await message.reply_text(text)
