@@ -20,13 +20,14 @@ async def home(_, query: CallbackQuery):
     reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    "المساعدة", callback_data="others")
+                    InlineKeyboardButton(
+                    "➕ اضفني الى مجموعتك", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
                 ],
                 [
                     InlineKeyboardButton(
                         "𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀", url=f"https://t.me/JAVA_telthon"),
                     InlineKeyboardButton(
-                        "➕ اضفني الى مجموعتك", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
+                    "المساعدة", callback_data="others") 
                 ]
            ]
         ),
