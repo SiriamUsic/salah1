@@ -38,7 +38,8 @@ async def start_(client: Client, message: Message):
     reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    "المساعدة ⁉️", callback_data="others")
+                    InlineKeyboardButton(
+                        "المساعدة ⁉️", callback_data="others")
                 ],
                 [
                     InlineKeyboardButton(
