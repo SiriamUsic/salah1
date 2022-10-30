@@ -14,15 +14,15 @@ MESSAGE = "مرحبا بك في صانع بوتات ميوزك سورس جافا
 async def hello(client, message: Message):
     buttonsInlineKeyboard = [
            [
-                InlineKeyboardButton("صنع بوت", callback_data="Salah"), 
+                "صنع بوت", callback_data="Salah"), 
             ],
             [
                 InlineKeyboardButton("𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀", url="t.me/JAVA_tlethon"),
             ],
-            ] 
+            [ 
             InlineKeyboardButton("𝐒𝐀𝐋𝐀𝐇 𝐇𝐄𝐌𝐃𝐀𝐍", url="t.me/Salah_officiall"),
             ],
-            [
+            ]
     reply_markup = InlineKeyboardMarkup(buttons)
     await client.send_photo(message.chat.id, f"{choice(IMG)}", caption=MESSAGE, reply_markup=reply_markup)
 
