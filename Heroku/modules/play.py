@@ -351,7 +351,7 @@ async def play(app: Client, message: Message):
         
        [
             InlineKeyboardButton("𝐉𝐀𝐕𝐀 𝐒𝐔𝐏𝐏𝐎𝐑𝐓", url=f"t.me/JAVA_Supports"),
-            InlineKeyboardButton("𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀", url=f"t.meJAVA_telthon}"),
+            InlineKeyboardButton("𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀", url=f"t.meJAVA_telthon"),
         ],[
             InlineKeyboardButton("🎥 𝗪𝗮𝘁𝗰𝗵 𝗼𝗻 𝗬𝗼𝘂𝗧𝘂𝗯𝗲", url=f"{url}"),
         ],[
