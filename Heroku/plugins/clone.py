@@ -14,7 +14,7 @@ MESSAGE = "مرحبا بك في صانع بوتات ميوزك سورس جافا
 async def hello(client, message: Message):
     buttonsInlineKeyboard = [
            [
-                "صنع بوت", callback_data="Salah"), 
+                InlineKeyboardButton("صنع بوت", callback_data="Salah"), 
             ],
             [
                 InlineKeyboardButton("𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀", url="t.me/JAVA_tlethon"),
