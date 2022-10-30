@@ -4,13 +4,13 @@ from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMa
 from Heroku.config import BOT_NAME, OWNER_USERNAME, UPDATE, SUPPORT, BOT_USERNAME
 
 HELP_TEXT = """
-ʜᴇʏᴀ! [{}](tg://user?id={})
+مرحبا ! [{}](tg://user?id={})
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖
-✘ ɪ'ᴍ ᴊᴜꜱᴛ ɴᴏᴛ ᴀ ᴍᴜꜱɪᴄ ʙᴏᴛ ɪ ʜᴀᴠᴇ ʟᴏᴛꜱ ᴏꜰ ꜰᴇᴀᴛᴜʀᴇꜱ ᴡʜɪᴄʜ ʏᴏᴜ ʟɪᴋᴇꜱ ᴛʜᴀᴛ.
-‣ ɪ ᴄᴀɴ ᴘʟᴀʏ ᴀᴜᴅɪᴏ+ᴠɪᴅᴇᴏ ʙᴏᴛʜ.
-‣ ɪ ʜᴀᴠᴇ ᴀʟᴍᴏꜱᴛ ᴀʟʟ ꜰᴇᴀᴛᴜʀᴇꜱ ᴡʜɪᴄʜ ɴᴇᴇᴅꜱ ᴀ ᴍᴜꜱɪᴄ ʙᴏᴛ
+✘ أنا بوت تشغيل موسيقي في المكالمه الصوتيه ولدي الكثير من الميزات التي تعجبك
+‣ أستطيع تشغيل ( الصوت + الفيديو )
+‣ لدي تقريبًا جميع الميزات التي تحتاجها في بوت الموسيقى
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖
-✘ ᴄʟɪᴄᴋ ᴏɴ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ 🔘 ꜰᴏʀ ᴍᴏʀᴇ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ℹ️.
+✘ انقر فوق زر المساعدة لمزيد من المعلومات.
 """
 
 
@@ -20,14 +20,13 @@ async def home(_, query: CallbackQuery):
     reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(
-                        "✚ ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ᴀᴅᴅ ᴍᴇ", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
+                    "المساعدة", callback_data="others")
                 ],
                 [
                     InlineKeyboardButton(
-                        "📡 ᴄʜᴀɴɴᴇʟ", url=f"https://t.me/{UPDATE}"),
+                        "𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀", url=f"https://t.me/JAVA_telthon"),
                     InlineKeyboardButton(
-                        "☁️ ᴏᴛʜᴇʀs", callback_data="others")
+                        "➕ اضفني الى مجموعتك", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
                 ]
            ]
         ),
@@ -41,25 +40,25 @@ async def home(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("others"))
 async def others(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""ʜᴇʏʏ [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})
+        f"""مرحبا [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})
 
-ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ɢɪᴠᴇɴ ʙᴇʟᴏᴡ ᴛᴏ ᴋɴᴏᴡ ᴍᴏʀᴇ ᴀʙᴏᴜᴛ ᴍᴇ :""",
+انقر فوق الأزرار الواردة أدناه لمعرفة المزيد عني :""",
     reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "🗯️ ʜᴇʀᴏᴋᴜ", url=f"https://heroku.com"),
+                        "𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀", url=f"https://t.me/JAVA_telthon"),
                     InlineKeyboardButton(
-                        "🌐 ɢɪᴛʜᴜʙ", url=f"https://github.com/Itz-Zaid")
+                        "𝐒𝐀𝐋𝐀𝐇 𝐇𝐄𝐌𝐃𝐀𝐍", url=f"https://t.me/Salah_officiall")
                 ],
                 [
                     InlineKeyboardButton(
-                        "🍭 ᴄʀᴇᴅɪᴛs", callback_data="credit"),
+                        "اوامر التشغيل", callback_data="credit"),
                     InlineKeyboardButton(
-                        "🍀 ʀᴇᴘᴏ ɪɴғᴏ", callback_data="repoinfo")
+                        "السورس", callback_data="repoinfo")
                 ],
                 [
-                    InlineKeyboardButton("⬅️ ʙᴀᴄᴋ", callback_data="home")
+                    InlineKeyboardButton("⬅️ رجــوع", callback_data="home")
                 ]
            ]
         ),
@@ -69,17 +68,34 @@ async def others(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("credit"))
 async def credit(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""ᴄʀᴇᴅɪᴛs ғᴏʀ ᴛʜɪs ʙᴏᴛ 🍀
+        f"""**🤖 أوامر البوت العادية :-
 
-• @{OWNER_USERNAME}
-- ʙᴏᴛ ᴏᴡɴᴇʀ
+» /play او تشغيل و (اسم الاغنيه)  - لتشغيل الموسيقي
+» /skip - تخطي الأغنية
+» /end - ايقاف تشغيل الموسيقى
+» /pause - أوقف التشغيل مؤقتًا
+» /resume - استئناف التشغيل
+» /mute - كتم المساعد 
+» /search - (إسم الأغنية)
 
 
-ᴛʜᴀɴᴋs ᴀ ʟᴏᴛ ғᴏʀ ᴄᴏɴᴛʀɪʙᴜᴛɪɴɢ ʏᴏᴜʀ ᴛɪᴍᴇ ᴀɴᴅ sᴋɪʟʟs !!""",
+
+⚙ بعض الأوامر الإضافية :-
+
+» /examine - لاختبار حالة تشغيل البوت
+» /start - بدأ البوت
+» /id - لجلب ايديك
+» /repo - لجلب كود مصدر السورس
+» /rmd - حذف كل التنزيلات
+» /clean - نظف ملفات التخزين
+» /gcast - بث رسالتك
+
+
+𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪 ](https://t.me/JAVA_tlethon)**""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⬅️ ʙᴀᴄᴋ", callback_data="others")
+                    InlineKeyboardButton("⬅️ رجــوع", callback_data="others")
                 ],
             ]
         ),
@@ -97,15 +113,11 @@ async def reinfo(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("repoinfo"))
 async def repoinfo(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""ᴀʙᴏᴜᴛ ᴛʜᴇ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : 
-
-ᴛʜɪs ʀᴇᴘᴏ ɪs ᴏɴʟʏ ᴍᴀᴅᴇ ғᴏʀ ᴅᴇᴘʟᴏʏɪɴɢ ᴀ ᴘᴏᴡᴇʀғᴜʟ ᴍᴜsɪᴄ ʙᴏᴛ ᴏɴ ʜᴇʀᴏᴋᴜ ᴡɪᴛʜᴏᴜᴛ ғᴀᴄɪɴɢ ʜᴇʀᴏᴋᴜ ᴀᴄᴄᴏᴜɴᴛ ʙᴀɴɴɪɴɢ ᴘʀᴏʙᴇʟᴍ.
-
-🔗 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : https://github.com/ITZ-ZAID/Zaid-Vc-Player""",
+        f"""سورس جافا ميوزك""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⬅️ ʙᴀᴄᴋ", callback_data="others")
+                    InlineKeyboardButton("⬅️ رجــوع", callback_data="others")
                 ],
             ]
         ),

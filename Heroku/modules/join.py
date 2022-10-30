@@ -11,13 +11,13 @@ from Heroku.calls import client as USER
 
 
 @Client.on_message(
-    command(["userbotjoin", "botjoin", "join"]) & ~filters.private & ~filters.bot
+    command(["userbotjoin", "botjoin", "join","انضم"]) & ~filters.private & ~filters.bot
 )
 @errors
 async def addchannel(client, message):
     if message.sender_chat:
         return await message.reply_text(
-            "🔴 __You're an **Anonymous Admin**!__\n│\n╰ Revert back to user account from admin rights."
+            "🔴 __أنت **مشرف مجهول**!__\n│\n╰ عد إلى حساب المستخدم من حقوق المسؤول."
         )
     permission = "can_delete_messages"
     m = await adminsOnly(permission, message)
@@ -31,7 +31,7 @@ async def addchannel(client, message):
             link_bokep = f"https://t.me/joinchat/{kontol}"
     except:
         await message.reply_text(
-            "**Add me admin first**",
+            "**ارفعني مشرف الاول يا اعمى القلب والنظر**",
         )
         return
 
@@ -44,22 +44,22 @@ async def addchannel(client, message):
         await USER.join_chat(link_bokep)
     except UserAlreadyParticipant:
         await message.reply_text(
-            f"🔴 **{user.first_name} already join this group !!**",
+            f"🔴 **{user.first_name} انضم بالفعل إلى هذه المجموعة !!**",
         )
     except Exception as e:
         print(e)
         await message.reply_text(
-            f"❌ **Assistant ({user.first_name}) can't join your group due to many join requests for userbot!**\n‼️ Make sure the user is not banned in the group."
-            f"\n\n» `Manually add the {user.first_name} to your group`",
+            f"❌ **مساعد ({user.first_name}) لا يمكن الانضمام إلى مجموعتك بسبب العديد من طلبات الانضمام للمساعد !**\n‼️ تأكد من عدم حظر حساب المساعد في المجموعة."
+            f"\n\n» `قم يدويًا بإضافة {user.first_name} إلى مجموعتك`",
         )
         return
 
 
-@USER.on_message(filters.group & command(["userbotleave", "odaleave", "odaleft"]))
+@USER.on_message(filters.group & command(["userbotleave", "odaleave", "odaleft","غادر"]))
 async def rem(USER, message):
     if message.sender_chat:
         return await message.reply_text(
-            "🔴 __You're an **Anonymous Admin**!__\n│\n╰ Revert back to user account from admin rights."
+            "🔴 __أنت **مشرف مجهول**!__\n│\n╰ عد إلى حساب المستخدم من حقوق المسؤول."
         )
     permission = "can_delete_messages"
     m = await adminsOnly(permission, message)
@@ -68,23 +68,23 @@ async def rem(USER, message):
     try:
         await USER.send_message(
             message.chat.id,
-            "✅ ᴜsᴇʀʙᴏᴛ ʟᴇғᴛ ᴛʜᴇ ᴄʜᴀᴛ....",
+            "✅ غادر المساعد المجموعه بنجاح....",
         )
         await USER.leave_chat(message.chat.id)
     except:
         await message.reply_text(
-            "❌ **Assistant can't leave your group! probably waiting for floodwaits**\n\n» Manually remove me from your group</b>"
+            "❌ **لا يمكن للمساعد مغادرة مجموعتك!**\n\n» ازلني يدويًا من مجموعتك</b>"
         )
 
         return
 
 
-@Client.on_message(command(["userbotleaveall", "leaveall"]))
+@Client.on_message(command(["userbotleaveall", "leaveall", "غادر الكل"]))
 @sudo_users_only
 async def bye(client, message):
     left = 0
     sleep_time = 0.1
-    lol = await message.reply("**Assistant leaving all groups**\n\n`Processing...`")
+    lol = await message.reply("**يغادر المساعد جميع الجروبات**\n\n`انتظر قليلا...`")
     async for dialog in USER.iter_dialogs():
         try:
             await USER.leave_chat(dialog.chat.id)
@@ -94,4 +94,4 @@ async def bye(client, message):
             await asyncio.sleep(int(e.x))
         except Exception:
             pass
-    await lol.edit(f"🏃‍♂️ `Assistant leaving...`\n\n» **Left:** {left} chats.")
+    await lol.edit(f"🏃‍♂️ `غادر المساعد بنجاح...`\n\n» **غادر:** {left} مجموعه.")

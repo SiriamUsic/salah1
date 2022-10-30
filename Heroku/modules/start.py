@@ -22,13 +22,13 @@ TIME_DURATION_UNITS = (
 )
 
 HELP_TEXT = """
-ʜᴇʏᴀ! {}
+مرحبا ! [{}](tg://user?id={})
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖
-✘ ɪ'ᴍ ᴊᴜꜱᴛ ɴᴏᴛ ᴀ ᴍᴜꜱɪᴄ ʙᴏᴛ ɪ ʜᴀᴠᴇ ʟᴏᴛꜱ ᴏꜰ ꜰᴇᴀᴛᴜʀᴇꜱ ᴡʜɪᴄʜ ʏᴏᴜ ʟɪᴋᴇꜱ ᴛʜᴀᴛ.
-‣ ɪ ᴄᴀɴ ᴘʟᴀʏ ᴀᴜᴅɪᴏ+ᴠɪᴅᴇᴏ ʙᴏᴛʜ.
-‣ ɪ ʜᴀᴠᴇ ᴀʟᴍᴏꜱᴛ ᴀʟʟ ꜰᴇᴀᴛᴜʀᴇꜱ ᴡʜɪᴄʜ ɴᴇᴇᴅꜱ ᴀ ᴍᴜꜱɪᴄ ʙᴏᴛ.
+✘ أنا بوت تشغيل موسيقي في المكالمه الصوتيه ولدي الكثير من الميزات التي تعجبك
+‣ أستطيع تشغيل ( الصوت + الفيديو )
+‣ لدي تقريبًا جميع الميزات التي تحتاجها في بوت الموسيقى
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖
-✘ ᴄʟɪᴄᴋ ᴏɴ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ 🔘 ꜰᴏʀ ᴍᴏʀᴇ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ℹ️.
+✘ انقر فوق زر المساعدة لمزيد من المعلومات.
 """
 
 
@@ -38,23 +38,22 @@ async def start_(client: Client, message: Message):
     reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(
-                        "✚ ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ᴀᴅᴅ ᴍᴇ", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
+                    "المساعدة ⁉️", callback_data="others")
                 ],
                 [
                     InlineKeyboardButton(
-                        "📡 ᴄʜᴀɴɴᴇʟ", url=f"https://t.me/{UPDATE}"),
+                        "𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀", url=f"https://t.me/JAVA_tlethon"),
                     InlineKeyboardButton(
-                        "☁️ ᴏᴛʜᴇʀs", callback_data="others")
+                        "➕ اضفني الى مجموعتك", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
                 ]
            ]
         ),
     )
 
 
-@Client.on_message(command(["ping"]) & ~filters.edited)
+@Client.on_message(command(["ping","البينج"]) & ~filters.edited)
 async def ping_pong(client: Client, message: Message):
     start = time()
-    m_reply = await message.reply_text("ᴘɪɴɢ..... 👀")
+    m_reply = await message.reply_text("جاري حساب سرعة البوت...")
     delta_ping = time() - start
-    await m_reply.edit_text("Pong.... \n" f"`{delta_ping * 1000:.3f} ᴍs`")
+    await m_reply.edit_text("سرعة البوت \n" f"`{delta_ping * 1000:.3f} MS`")
