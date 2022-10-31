@@ -567,7 +567,7 @@ async def play(app: Client, message: Message):
         x = await loop.run_in_executor(None, download, url, my_hook)
         file_path = await cconvert(x)
 
-if await is_active_chat(message.chat.id):
+    if await is_active_chat(message.chat.id):
         position = await queues.put(message.chat.id, file=file_path)
         await message.reply_photo(
             photo="final.png",
