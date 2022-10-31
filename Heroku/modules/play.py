@@ -178,11 +178,14 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     views = f"Views : {views}"
     duration = f"Duration : {duration} minutes"
     channel = f"Request : {BOT_NAME} Bot"
-
+    source = f"SouRce JaVa MuSic"
+    owner = f"SaLah HemDan"
+    
     image4.text((670, 410), text=views, fill="white", font = font4, align ="left") 
     image4.text((670, 460), text=duration, fill="white", font = font4, align ="left") 
     image4.text((670, 510), text=channel, fill="white", font = font4, align ="left")
-
+image4.text((670, 510), text=source, fill="red", font = font4, align ="left")
+image4.text((670, 510), text=owner, fill="white", font = font4, align ="left")
     
     image2.save(f"final.png")
     os.remove(f"background.png")
@@ -194,7 +197,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 
 # play
 @Client.on_message(
-    command(["play", f"play@{BOT_USERNAME}"
+    command(["play", 
   f"تشغيل"])
     & filters.group
     & ~filters.edited
@@ -437,7 +440,7 @@ async def play(app: Client, message: Message):
                     taken = "00:00"
                 size = d["_total_bytes_str"]
                 lel.edit(
-                    f"**جارى التحميل :** {title[:50]}.....\n\n**ғɪʟᴇ sɪᴢᴇ :** {size}\n**الوقت :** {taken} sec\n\n**تحويل الملف : **[__FFmpeg processing__]"
+                    f"**جارى التحميل :** {title[:50]}.....\n\n**الاسم :** {size}\n**الوقت :** {taken} sec\n\n**تحويل الملف : **[__FFmpeg processing__]"
                 )
                 print(f"[{url_suffix}] تم تنزيله في: {taken} ثانيه")
 
@@ -599,7 +602,7 @@ if await is_active_chat(message.chat.id):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="**تم التشغيل بنجاح \n•═════•| [𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪](https://t.me/JAVA_tlethon) |•═════•\n\n📁 **الاسم :** [{}]({})\n🖇 **المحادثة :** `{}`\n📈 **حالة التشغيل :** `شغال`\n📌 **نوع التشغيل :** `موسيقي`\n👤 **مطلوبه بواسطة :** {}\nللمزيد من المعلومات : [اضغط هنا](https://t.me/JAVA_Supports)\n\n•═════•| [𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪](https://t.me/JAVA_tlethon) |•═════•".format(
+            caption="**تم التشغيل بنجاح \n•═════•| [𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪](https://t.me/JAVA_tlethon) |•═════•\n\n📁 **الاسم :** [{}]({})\n🖇 **الوقت :** `{duration}`\n📈 **حالة التشغيل :** `شغال`\n📌 **نوع التشغيل :** `موسيقي`\n👤 **مطلوبه بواسطة :** {}\nللمزيد من المعلومات : [اضغط هنا](https://t.me/JAVA_Supports)\n\n•═════•| [𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪](https://t.me/JAVA_tlethon) |•═════•".format(
                 title, url, message.from_user.mention()
             ),
         )

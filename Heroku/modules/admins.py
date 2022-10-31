@@ -52,7 +52,7 @@ from Heroku.setup.administrator import adminsOnly
 
 
 
-@Client.on_message(command(["reload", f"reload@{BOT_USERNAME}", "تحديث"]) & other_filters)
+@Client.on_message(command(["reload", f"تحديث"]) & other_filters)
 @authorized_users_only
 async def update_admin(client, message):
     global admins

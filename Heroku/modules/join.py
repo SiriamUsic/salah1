@@ -11,7 +11,7 @@ from Heroku.calls import client as USER
 
 
 @Client.on_message(
-    command(["userbotjoin", f"userbotjoin@{BOT_USERNAME}", "ادخل"]) & ~filters.private & ~filters.bot
+    command(["userbotjoin", f"ادخل"]) & ~filters.private & ~filters.bot
 )
 @errors
 async def addchannel(client, message):
@@ -55,7 +55,7 @@ async def addchannel(client, message):
         return
 
 
-@Client.on_message(command(["userbotleave", "اخرج" f"leave@{BOT_USERNAME}"]) & filters.group & ~filters.edited
+@Client.on_message(command(["userbotleave", "اخرج"]) & filters.group & ~filters.edited
 async def rem(USER, message):
     if message.sender_chat:
         return await message.reply_text(
