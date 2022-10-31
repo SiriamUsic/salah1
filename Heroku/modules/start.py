@@ -60,29 +60,3 @@ async def ping_pong(client: Client, message: Message):
     m_reply = await message.reply_text("✧ جاري حساب سرعة البوت...")
     delta_ping = time() - start
     await m_reply.edit_text("✧ سرعة البوت : \n✧ " f"`{delta_ping * 1000:.3f} MS`")
-@Client.on_message(filters.new_chat_members)
-async def new_chat(c: Client, m: Message):
-    ass_uname = (await user.get_me()).username
-    bot_id = (await c.get_me()).id
-    for member in m.new_chat_members:
-        if member.id == bot_id:
-            return await m.reply(
-                "🍾️ **شـكرا لإضـافتـي إلـى المجـموعـة !**\n\n"
-                "**قـم بتـرقيتـي كـمـشـرف عـن المـجـموعـة ، وإلا فلـن أتمـكن مـن الـعـمل بـشـكل صـحيـح ، ولا تنـسـى الـكتابـة /userbotjoin لـدعـوة المـساعـد.**\n\n",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton("𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀", url=f"https://t.me/JAVA_telthon"),
-                            InlineKeyboardButton("𝐉𝐀𝐕𝐀 𝐒𝐔𝐏𝐏𝐎𝐑𝐓", url=f"https://t.me/JAVA_Supports")
-                        ],
-                        [
-                            InlineKeyboardButton("حـسـاب المساعـد", url=f"https://t.me/{ass_uname}")
-                        ]
-                    ]
-                )
-            )
-
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔙 ︙رجــــــوع", callback_data="start")]]
-        ),
-    )
