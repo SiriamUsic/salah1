@@ -79,7 +79,7 @@ async def rem(USER, message):
         return
 
 
-@Client.on_message(command(["leaveall", f"leaveall@{BOT_USERNAME}", "غادر كله"]))
+@Client.on_message(command(["غادر الكل", "leaveall"]))
 @sudo_users_only
 async def bye(client, message):
     left = 0
