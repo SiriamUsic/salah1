@@ -19,7 +19,6 @@ async def unauthorised(message: Message):
     checking = message.from_user.mention
     text = (
         f"**يمكن للمشرفين فقط القيام بذلك !!**"
-        + f"\n❌ حذف رسائل الجروب"
     )
     try:
         await message.reply_text(text)
