@@ -576,7 +576,7 @@ if await is_active_chat(message.chat.id):
         position = await queues.put(message.chat.id, file=file_path)
         await message.reply_photo(
             photo="final.png",
-            caption="تم اضافتها لقائمة الانتظار {}\n•═════•| [ 𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪 ](https://t.me/JAVA_tlethon) |•═════•\n\n**📂 الاسم :**[{}]({})\n\n📈 **حالة التشغيل :** `انتظار`\n📌 **نوع التشغيل :** `موسيقي`\n👥 طلب : {}\n\n•═════•| [ 𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪 ](https://t.me/JAVA_tlethon) |•═════•".format(
+            caption="#تم اضافتها لقائمة الانتظار {}\n•═════•| [ 𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪 ](https://t.me/JAVA_tlethon) |•═════•\n\n**📂 الاسم :**[{}]({})\n\n📈 **حالة التشغيل :** `انتظار`\n📌 **نوع التشغيل :** `موسيقي`\n👥 طلب : {}\n\n•═════•| [ 𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪 ](https://t.me/JAVA_tlethon) |•═════•".format(
                 position, title, url, message.from_user.mention()
             ),
         )
