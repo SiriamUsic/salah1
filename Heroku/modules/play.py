@@ -452,7 +452,7 @@ async def play(app: Client, message: Message):
         await lel.edit("**🔄 جاري تنفيذ امرك ... الرجاء الانتظار!**")
         query = message.text.split(None, 1)[1]
         # print(query)
-        await lel.edit("**Featching details**")
+        await lel.edit("**جاري استدعاء المساعد للمكالمة الصوتيه**")
         try:
             results = YoutubeSearch(query, max_results=5).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
@@ -569,11 +569,11 @@ async def play(app: Client, message: Message):
         x = await loop.run_in_executor(None, download, url, my_hook)
         file_path = await cconvert(x)
 
-    if await is_active_chat(message.chat.id):
+if await is_active_chat(message.chat.id):
         position = await queues.put(message.chat.id, file=file_path)
         await message.reply_photo(
             photo="final.png",
-            caption="**تمت إضافة المسار إلى قائمة الانتظار ** `{pos}`\n•═══•| [ 𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪 ](https://t.me/JAVA_tlethon) |•═══•\n\n• **الاسم :** [{songname}]({link}) | `اغنية`\n• **المحادثة :** `{chat_id}`\n• **بواسطة :** {m.from_user.mention()}\n•═══•| [ 𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪 ](https://t.me/JAVA_tlethon) |•═══•".format(
+            caption="#تم اضافتها لقائمة الانتظار {}\n•═════•| [ 𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪 ](https://t.me/JAVA_tlethon) |•═════•\n\n**📂 الاسم :**[{}]({})\n\n📈 **حالة التشغيل :** `انتظار`\n📌 **نوع التشغيل :** `موسيقي`\n👥 طلب : {}\n\n•═════•| [ 𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪 ](https://t.me/JAVA_tlethon) |•═════•".format(
                 position, title, url, message.from_user.mention()
             ),
         )
@@ -599,7 +599,7 @@ async def play(app: Client, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="**تم التشغيل بنجاح \n•═══•| [ 𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪 ](https://t.me/JAVA_tlethon) |•═══•\n• **الاسم :** [{songname}]({link})\n• **المحادثة :** `{chat_id}`\n• **حالة التشغيل :** `شغال`\n• **نوع التشغيل :** `موسيقي`\n• **مطلوبه بواسطة :** {requester}\n•═══•| [ 𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪 ](https://t.me/JAVA_tlethon) |•═══•".format(
+            caption="**تم التشغيل بنجاح \n•═════•| [𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪](https://t.me/JAVA_tlethon) |•═════•\n\n📁 **الاسم :** [{}]({})\n🖇 **المحادثة :** `{}`\n📈 **حالة التشغيل :** `شغال`\n📌 **نوع التشغيل :** `موسيقي`\n👤 **مطلوبه بواسطة :** {}\nللمزيد من المعلومات : [اضغط هنا](https://t.me/JAVA_Supports)\n\n•═════•| [𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪](https://t.me/JAVA_tlethon) |•═════•".format(
                 title, url, message.from_user.mention()
             ),
         )

@@ -51,6 +51,21 @@ async def member_permissions(chat_id: int, user_id: int):
 from Heroku.setup.administrator import adminsOnly
 
 
+
+@Client.on_message(command(["reload", f"reload@{BOT_USERNAME}", "تحديث"]) & other_filters)
+@authorized_users_only
+async def update_admin(client, message):
+    global admins
+    new_admins = []
+    new_ads = await client.get_chat_members(message.chat.id, filter="administrators")
+    for u in new_ads:
+        new_admins.append(u.user.id)
+    admins[message.chat.id] = new_admins
+    await message.reply_text(
+        "✅ **تم اعادة تحميل البوت بنجاح !**\n✅ **تم تحديث قائمة الادمنيه !**"
+    )
+
+
 @Client.on_message(command(["pause", "اسكت"]) & other_filters)
 async def pause(app: Client, message: Message):
     if message.sender_chat:

@@ -3,6 +3,7 @@ from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMa
 
 from Heroku.config import BOT_NAME, OWNER_USERNAME, UPDATE, SUPPORT, BOT_USERNAME
 
+IMG = ["https://telegra.ph/file/9cbae99908382932e51f0.png", "https://telegra.ph/file/9870433b0c155ecf2ad07.png", "https://telegra.ph/file/c6efbd77d1d931c45d0c2.jpg", "https://telegra.ph/file/f9d97a7cde8b79f4ab0a3.png"]
 HELP_TEXT = """
 مرحبا ! [{}](tg://user?id={})
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖
@@ -54,7 +55,13 @@ async def others(_, query: CallbackQuery):
                 ],
                 [
                     InlineKeyboardButton(
-                        "اوامر التشغيل", callback_data="credit"),
+                        "اوامر التشغيل 🖇", callback_data="credit"),
+                ],
+                [
+                    InlineKeyboardButton(
+                    "الدليل الأساسي ⁉️", callback_data="cbhowtouse") 
+                ],
+                [       
                     InlineKeyboardButton(
                         "السورس", callback_data="repoinfo")
                 ],
@@ -89,10 +96,7 @@ async def credit(_, query: CallbackQuery):
 » /repo - لجلب كود مصدر السورس
 » /rmd - حذف كل التنزيلات
 » /clean - نظف ملفات التخزين
-» /gcast - بث رسالتك
-
-
-𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪 ](https://t.me/JAVA_tlethon)**""",
+» /gcast - بث رسالتك**""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -114,7 +118,7 @@ async def reinfo(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("repoinfo"))
 async def repoinfo(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""سورس جافا ميوزك""",
+        f"""سورس جافا ميوزك \n•═════•| [ 𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪 ](https://t.me/JAVA_tlethon) |•═════• \n• مبرمج السورس : [ 𝐒𝐀𝐋𝐀𝐇 𝐇𝐄𝐌𝐃𝐀𝐍 ](https://t.me/Salah_officiall) \n• قناة السورس : [ 𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀 ](https://t.me/JAVA_tlethon) \n• جروب الدعم : [ 𝐉𝐀𝐕𝐀 𝐒𝐔𝐏𝐏𝐎𝐑𝐓 ](https://t.me/JAVA_tlethon) \n•═════•| [ 𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪 ](https://t.me/JAVA_tlethon) |•═════•""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
