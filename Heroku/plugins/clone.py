@@ -12,13 +12,12 @@ MESSAGE = "مرحبا بك في صانع بوتات ميوزك سورس جافا
 
 @cloner.on_message(filters.private & filters.command("start"))
 async def hello(client, message: Message):
-    buttonsInlineKeyboard = [
-            [
-            [
-                InlineKeyboardButton("𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀", url="t.me/JAVA_tlethon"),
+    buttons = [
+           [
+                InlineKeyboardButton("✘ ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ", url="t.me/JAVA_telthon"),
             ],
-            [ 
-            InlineKeyboardButton("𝐒𝐀𝐋𝐀𝐇 𝐇𝐄𝐌𝐃𝐀𝐍", url="t.me/Salah_officiall"),
+            [
+                InlineKeyboardButton("✘ ꜱᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ", url="t.me/JAVA_Supports"),
             ],
             ]
     reply_markup = InlineKeyboardMarkup(buttons)
