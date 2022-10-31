@@ -55,7 +55,7 @@ async def addchannel(client, message):
         return
 
 
-@Client.on_message(command(["userbotleave", "اخرج"]) & filters.group & ~filters.edited
+@USER.on_message(filters.group & command(["userbotleave", "غادر", "odaleft"]))
 async def rem(USER, message):
     if message.sender_chat:
         return await message.reply_text(
