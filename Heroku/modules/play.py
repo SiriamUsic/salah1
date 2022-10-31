@@ -178,21 +178,16 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     views = f"Views : {views}"
     duration = f"Duration : {duration} minutes"
     channel = f"Request : {BOT_NAME} Bot"
-    source = f"SouRce JaVa MuSic"
-    owner = f"SaLah HemDan"
     
     image4.text((670, 410), text=views, fill="white", font = font4, align ="left") 
     image4.text((670, 460), text=duration, fill="white", font = font4, align ="left") 
     image4.text((670, 510), text=channel, fill="white", font = font4, align ="left")
-image4.text((670, 510), text=source, fill="red", font = font4, align ="left")
-image4.text((670, 510), text=owner, fill="white", font = font4, align ="left")
     
     image2.save(f"final.png")
     os.remove(f"background.png")
     final = f"temp.png"
     return final
      
-
 
 
 # play
