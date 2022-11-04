@@ -48,7 +48,10 @@ async def member_permissions(chat_id: int, user_id: int):
     return perms
 
 
-@Client.on_message(command(["pause", "اسكت"]) & other_filters)
+from Heroku.setup.administrator import adminsOnly
+
+
+@Client.on_message(command(["pause"]) & other_filters)
 async def pause(app: Client, message: Message):
     if message.sender_chat:
         return await message.reply_text(
@@ -62,24 +65,24 @@ async def pause(app: Client, message: Message):
     chat_id = message.chat.id
     if not await is_active_chat(chat_id):
         return await message.reply_text(
-            "• مفيش حاجه شغاله اصلا."
+            "• Bot isn't streaming on voice chat."
         )
     elif not await is_music_playing(message.chat.id):
         return await message.reply_text(
-            "• مفيش حاجه شغاله اصلا.."
+            "• Bot isn't streaming on voice chat."
         )
     await music_off(chat_id)
     await calls.pytgcalls.pause_stream(chat_id)
     await message.reply_text(
-        f"• تم ايقاف الموسيقى مؤقتا \n بواسطة : {checking}"
+        f"• Voicechat Paused by : {checking}"
     )
 
 
-@Client.on_message(command(["resume", "استئناف", "كمل"]) & other_filters)
+@Client.on_message(command(["resume"]) & other_filters)
 async def resume(app: Client, message: Message):
     if message.sender_chat:
         return await message.reply_text(
-            "🔴 __أنت **مشرف مجهول**!__\n│\n╰ عد إلى حساب المستخدم من حقوق المسؤول."
+            "🔴 __You're an **Anonymous Admin**!__\n│\n╰ Revert back to user account from admin rights."
         )
     permission = "can_delete_messages"
     m = await adminsOnly(permission, message)
@@ -89,25 +92,25 @@ async def resume(app: Client, message: Message):
     chat_id = message.chat.id
     if not await is_active_chat(chat_id):
         return await message.reply_text(
-            "❌ __**لا أعتقد أنه تم إيقاف شيء ما مؤقتًا في الدردشة الصوتية**__"
+            "❌ __**I dont think if something's paused on voice chat**__"
         )
     elif await is_music_playing(chat_id):
         return await message.reply_text(
-            "❌ __**لا أعتقد أنه تم إيقاف شيء ما مؤقتًا في الدردشة الصوتية**__"
+            "❌ __**I dont think if something's paused on voice chat**__"
         )
     else:
         await music_on(chat_id)
         await calls.pytgcalls.resume_stream(chat_id)
         await message.reply_text(
-            f"• تم استئناف التشغيل \n بواسطة : {checking}"
+            f"• Voicechat Resumed by : {checking}"
         )
 
 
-@Client.on_message(command(["end", "ايقاف"]) & other_filters)
+@Client.on_message(command(["end"]) & other_filters)
 async def stop(app: Client, message: Message):
     if message.sender_chat:
         return await message.reply_text(
-            "🔴 __أنت **مشرف مجهول**!__\n│\n╰ عد إلى حساب المستخدم من حقوق المسؤول."
+            "🔴 __You're an **Anonymous Admin**!__\n│\n╰ Revert back to user account from admin rights."
         )
     permission = "can_delete_messages"
     m = await adminsOnly(permission, message)
@@ -123,19 +126,19 @@ async def stop(app: Client, message: Message):
         await remove_active_chat(chat_id)
         await calls.pytgcalls.leave_group_call(chat_id)
         await message.reply_text(
-            f"• تم ايقاف التشغيل \n بواسطة : {checking}"
+            f"• Streaming ended by : {checking}"
         )
     else:
         return await message.reply_text(
-            "❌ __**لا أعتقد إذا كان هناك شيء ما يتم تشغيله في الدردشة الصوتية**__"
+            "❌ __**I dont think if something's playing on voice chat**__"
         )
 
 
-@Client.on_message(command(["skip", "تخطي"]) & other_filters)
+@Client.on_message(command(["skip"]) & other_filters)
 async def skip(app: Client, message: Message):
     if message.sender_chat:
         return await message.reply_text(
-            "🔴 __أنت **مشرف مجهول**!__\n│\n╰ عد إلى حساب المستخدم من حقوق المسؤول."
+            "🔴 __You're an **Anonymous Admin**!__\n│\n╰ Revert back to user account from admin rights."
         )
     permission = "can_delete_messages"
     m = await adminsOnly(permission, message)
@@ -145,13 +148,13 @@ async def skip(app: Client, message: Message):
     chat_id = message.chat.id
     chat_title = message.chat.title
     if not await is_active_chat(chat_id):
-        await message.reply_text("❌ __**مفيش حاجه شغاله اصلا**__")
+        await message.reply_text("❌ __**Nothing's playing on voice chat**__")
     else:
         task_done(chat_id)
         if is_empty(chat_id):
             await remove_active_chat(chat_id)
             await message.reply_text(
-                "❌ __**لا مزيد من الموسيقى في قائمة الانتظار**__\n\n**»** `جاري ترك الدردشة الصوتية...`"
+                "❌ __**No more music in Queue**__\n\n**»** `Leaving Voice Chat...`"
             )
             await calls.pytgcalls.leave_group_call(chat_id)
             return
@@ -165,7 +168,7 @@ async def skip(app: Client, message: Message):
                 ),
             )
             await message.reply_text(
-                f"• تم التخطي \n بواسطة : {checking}"
+                f"• Skipped by : {checking}"
             )
 
 
@@ -173,7 +176,7 @@ async def skip(app: Client, message: Message):
 async def stop_cmd(app: Client, message):
     if message.sender_chat:
         return await message.reply_text(
-            "🔴 __أنت **مشرف مجهول**!__\n│\n╰ عد إلى حساب المستخدم من حقوق المسؤول."
+            "🔴 __You're an **Anonymous Admin**!__\n│\n╰ Revert back to user account from admin rights."
         )
     permission = "can_delete_messages"
     m = await adminsOnly(permission, message)
@@ -191,5 +194,5 @@ async def stop_cmd(app: Client, message):
     except:
         pass
     await message.reply_text(
-        f"✅ __قوائم الانتظار المحذوفة بتنسيق **{message.chat.title}**__\n│\n╰ تم تنظيف قاعدة البيانات بواسطة {checking}"
+        f"✅ __Erased queues in **{message.chat.title}**__\n│\n╰ Database cleaned by {checking}"
     )

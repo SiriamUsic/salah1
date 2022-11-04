@@ -3,7 +3,6 @@ from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMa
 
 from Heroku.config import BOT_NAME, OWNER_USERNAME, UPDATE, SUPPORT, BOT_USERNAME
 
-IMG = ["https://telegra.ph/file/9cbae99908382932e51f0.png", "https://telegra.ph/file/9870433b0c155ecf2ad07.png", "https://telegra.ph/file/c6efbd77d1d931c45d0c2.jpg", "https://telegra.ph/file/f9d97a7cde8b79f4ab0a3.png"]
 HELP_TEXT = """
 مرحبا ! [{}](tg://user?id={})
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖
@@ -22,13 +21,13 @@ async def home(_, query: CallbackQuery):
             [
                 [
                     InlineKeyboardButton(
-                    "➕ اضفني الى مجموعتك", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
+                        "➕ اضفني الى مجموعتك", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")
                 ],
                 [
                     InlineKeyboardButton(
-                        "𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀", url=f"https://t.me/JAVA_telthon"),
+                        "𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀", url=f"https://t.me/{UPDATE}"),
                     InlineKeyboardButton(
-                    "المساعدة", callback_data="others") 
+                        "مساعده ⁉️", callback_data="others")
                 ]
            ]
         ),
@@ -42,9 +41,27 @@ async def home(_, query: CallbackQuery):
 @Client.on_callback_query(filters.regex("others"))
 async def others(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""مرحبا [{query.message.chat.first_name}](tg://user?id={query.message.chat.id})
+        f"""🤖 أوامر البوت العادية :-
 
-انقر فوق الأزرار الواردة أدناه لمعرفة المزيد عني :""",
+» /play او تشغيل و (اسم الاغنيه)  - لتشغيل الموسيقي
+» /skip - تخطي الأغنية
+» /end - ايقاف تشغيل الموسيقى
+» /pause - أوقف التشغيل مؤقتًا
+» /resume - استئناف التشغيل
+» /mute - كتم المساعد 
+» /search - (إسم الأغنية)
+
+
+
+⚙ بعض الأوامر الإضافية :-
+
+» /examine - لاختبار حالة تشغيل البوت
+» /start - بدأ البوت
+» /id - لجلب ايديك
+» /repo - لجلب كود مصدر السورس
+» /rmd - حذف كل التنزيلات
+» /clean - نظف ملفات التخزين
+» /gcast - بث رسالتك**""",
     reply_markup=InlineKeyboardMarkup(
             [
                 [

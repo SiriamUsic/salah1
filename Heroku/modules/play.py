@@ -194,7 +194,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 
 # play
 @Client.on_message(
-    command(["play", f"تشغيل"])
+    command(["play", f"play@{BOT_USERNAME}"])
     & filters.group
     & ~filters.edited
     & ~filters.forwarded
@@ -211,7 +211,7 @@ async def play(app: Client, message: Message):
 
     if message.chat.id in DISABLED_GROUPS:
         await message.reply(
-            " __**تم إيقاف تشغيل مشغل الموسيقى ، اطلب من المشرف تشغيله!**__"
+            "__**تم إيقاف تشغيل مشغل الموسيقى ، اطلب من المشرف تشغيله!**__"
         )
       
 
@@ -238,7 +238,7 @@ async def play(app: Client, message: Message):
         return
     if not c.can_invite_users:
         await lel.edit(
-            "**ليس لدي صلاحية : اضافة مستخدمين**"
+            "**ليس لدي صلاحية : اضافة مستخدمين*"
         )
         return
 
@@ -254,7 +254,7 @@ async def play(app: Client, message: Message):
             try:
                 await ASS_ACC.join_chat(f"{message.chat.username}")
                 await message.reply(
-                    f"**@{ASSUSERNAME} انضم بنجاح !**",
+                    f"**@{ASSUSERNAME} انضم بنجاح!**",
                 )
                 await remove_active_chat(chat_id)
             except Exception as e:
@@ -270,7 +270,7 @@ async def play(app: Client, message: Message):
                     link_bokep = f"https://t.me/joinchat/{kontol}"
                 await ASS_ACC.join_chat(link_bokep)
                 await message.reply(
-                    f"**@{ASSUSERNAME} هنا بالفعل عزيزي**",
+                    f"**@{ASSUSERNAME} هنا بالفعل**",
                 )
                 await remove_active_chat(message.chat.id)
             except UserAlreadyParticipant:
@@ -291,7 +291,7 @@ async def play(app: Client, message: Message):
     if audio:
         if round(audio.duration / 60) > DURATION_LIMIT:
             raise DurationLimitError(
-                f"✧ مقطع الفيديو أطول من {DURATION_LIMIT} الدقائق غير مسموح بها!"
+                f"مقطع الفديو اطول من {DURATION_LIMIT} دقائق!"
             )
 
         file_name = get_file_name(audio)
@@ -306,12 +306,12 @@ async def play(app: Client, message: Message):
     [
         
        [
-            InlineKeyboardButton("⚙️ 𝗦𝘂𝗽𝗽𝗼𝗿𝘁", url=f"t.me/{SUPPORT}"),
-            InlineKeyboardButton("🖇 𝗖𝗵𝗮𝗻𝗻𝗲𝗹", url=f"t.me/{UPDATE}"),
+            InlineKeyboardButton("📂 𝗦𝘂𝗽𝗽𝗼𝗿𝘁", url=f"t.me/{SUPPORT}"),
+            InlineKeyboardButton("✨ 𝗖𝗵𝗮𝗻𝗻𝗲𝗹", url=f"t.me/{UPDATE}"),
         ],[
             InlineKeyboardButton("🎥 𝗪𝗮𝘁𝗰𝗵 𝗼𝗻 𝗬𝗼𝘂𝗧𝘂𝗯𝗲", url=f"{url}"),
         ],[
-            InlineKeyboardButton("❌️ 𝗖𝗹𝗼𝘀𝗲", callback_data="cls"),
+            InlineKeyboardButton("🗑️ 𝗖𝗹𝗼𝘀𝗲", callback_data="cls"),
         ],
         
     ]
@@ -349,12 +349,12 @@ async def play(app: Client, message: Message):
     [
         
        [
-            InlineKeyboardButton("⚙️ 𝗦𝘂𝗽𝗽𝗼𝗿𝘁", url=f"t.me/{SUPPORT}"),
-            InlineKeyboardButton("🖇 𝗖𝗵𝗮𝗻𝗻𝗲𝗹", url=f"t.me/{UPDATE}"),
+            InlineKeyboardButton("📂 𝗦𝘂𝗽𝗽𝗼𝗿𝘁", url=f"t.me/{SUPPORT}"),
+            InlineKeyboardButton("✨ 𝗖𝗵𝗮𝗻𝗻𝗲𝗹", url=f"t.me/{UPDATE}"),
         ],[
             InlineKeyboardButton("🎥 𝗪𝗮𝘁𝗰𝗵 𝗼𝗻 𝗬𝗼𝘂𝗧𝘂𝗯𝗲", url=f"{url}"),
         ],[
-            InlineKeyboardButton("❌️ 𝗖𝗹𝗼𝘀𝗲", callback_data="cls"),
+            InlineKeyboardButton("🗑️ 𝗖𝗹𝗼𝘀𝗲", callback_data="cls"),
         ],
         
     ]
@@ -371,7 +371,7 @@ async def play(app: Client, message: Message):
 
         if (dur / 60) > DURATION_LIMIT:
             await lel.edit(
-                f"✧ مقطع الفيديو أطول من {DURATION_LIMIT} الدقائق غير مسموح بها!"
+                f"💡 Videos longer than {DURATION_LIMIT} minutes aren't allowed to play!"
             )
             return
         requested_by = message.from_user.first_name
@@ -395,7 +395,7 @@ async def play(app: Client, message: Message):
                     try:
                         if eta > 2:
                             lel.edit(
-                                f"جارى التحميل {title[:50]}\n\n✧ **حجم الملف :** {size}\n✧ **تقدم :** {percentage}\n✧ **السرعة :** {speed}\n✧ **الثواني :** {eta} ثانيه"
+                                f"ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ {title[:50]}\n\n**ғɪʟᴇ sɪᴢᴇ :** {size}\n**ᴘʀᴏɢʀᴇss :** {percentage}\n**sᴘᴇᴇᴅ :** {speed}\n**ᴇᴛᴀ :** {eta} sec"
                             )
                     except Exception as e:
                         pass
@@ -404,30 +404,30 @@ async def play(app: Client, message: Message):
                         flex[str(bytesx)] += 1
                         if eta > 2:
                             lel.edit(
-                                f"**جارى التحميل {title[:50]}\n\n✧ **حجم الملف :** {size}\n✧ **تقدم :** {percentage}\n✧ **السرعة :** {speed}\n✧ **الثواني :** {eta} ثانيه"
+                                f"**ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ :** {title[:50]}..\n\n**ғɪʟᴇ sɪᴢᴇ :** {size}\n**ᴘʀᴏɢʀᴇss :** {percentage}\n**sᴘᴇᴇᴅ :** {speed}\n**ᴇᴛᴀ :** {eta} sec"
                             )
                         print(
-                            f"✧ [{url_suffix}] تم التنزيل {percentage}\n✧ بسرعة {speed} | و : {eta} ثانيه"
+                            f"[{url_suffix}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
                         )
                 if per > 500:
                     if flex[str(bytesx)] == 3:
                         flex[str(bytesx)] += 1
                         if eta > 2:
                             lel.edit(
-                                f"**جارى التحميل {title[:50]}\n\n✧ **حجم الملف :** {size}\n✧ **تقدم :** {percentage}\n✧ **السرعة :** {speed}\n✧ **الثواني :** {eta} ثانيه"
+                                f"**ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ** {title[:50]}...\n\n**ғɪʟᴇ sɪᴢᴇ :** {size}\n**ᴘʀᴏɢʀᴇss :** {percentage}\n**sᴘᴇᴇᴅ :** {speed}\n**ᴇᴛᴀ :** {eta} sec"
                             )
                         print(
-                            f"✧ [{url_suffix}] تم التنزيل {percentage} بسرعة {speed} | و : {eta} ثانيه"
+                            f"[{url_suffix}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
                         )
                 if per > 800:
                     if flex[str(bytesx)] == 4:
                         flex[str(bytesx)] += 1
                         if eta > 2:
                             lel.edit(
-                                f"**جارى التحميل {title[:50]}\n\n✧ **حجم الملف :** {size}\n✧ **تقدم :** {percentage}\n✧ **السرعة :** {speed}\n✧ **الثواني :** {eta} ثانيه"
+                                f"**ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ :** {title[:50]}....\n\n**ғɪʟᴇ sɪᴢᴇ :** {size}\n**ᴘʀᴏɢʀᴇss :** {percentage}\n**sᴘᴇᴇᴅ :** {speed}\n**ᴇᴛᴀ :** {eta} sec"
                             )
                         print(
-                            f"✧ [{url_suffix}] تم التنزيل {percentage} بسرعة {speed} | و : {eta} ثانيه"
+                            f"[{url_suffix}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
                         )
             if d["status"] == "finished":
                 try:
@@ -436,9 +436,9 @@ async def play(app: Client, message: Message):
                     taken = "00:00"
                 size = d["_total_bytes_str"]
                 lel.edit(
-                    f"**جارى التحميل :** {title[:50]}.....\n\n✧ **الاسم :** {size}\n✧ **الوقت :** {taken} sec\n\n✧ **تحويل الملف : **[__FFmpeg processing__]"
+                    f"**ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ :** {title[:50]}.....\n\n**ғɪʟᴇ sɪᴢᴇ :** {size}\n**ᴛɪᴍᴇ :** {taken} sec\n\n**ᴄᴏɴᴠᴇʀᴛɪɴɢ ғɪʟᴇ : **[__FFmpeg processing__]"
                 )
-                print(f"✧ [{url_suffix}] تم تنزيله في: {taken} ثانيه")
+                print(f"[{url_suffix}] Downloaded| Elapsed: {taken} seconds")
 
         loop = asyncio.get_event_loop()
         x = await loop.run_in_executor(None, download, url, my_hook)
@@ -446,12 +446,12 @@ async def play(app: Client, message: Message):
     else:
         if len(message.command) < 2:
             return await lel.edit(
-                "**اكتب **: /play [اسم الموسيقى أو رابط يوتيوب أو الرد على الصوت]"
+                "**Usage**: /play [Music Name or Youtube Link or Reply to Audio]"
             )
-        await lel.edit("**🔄 جاري تنفيذ امرك ... الرجاء الانتظار!**")
+        await lel.edit("**🔄 Processing Query... Please Wait!**")
         query = message.text.split(None, 1)[1]
         # print(query)
-        await lel.edit("**جاري استدعاء المساعد للمكالمة الصوتيه**")
+        await lel.edit("**Featching details**")
         try:
             results = YoutubeSearch(query, max_results=5).to_dict()
             url = f"https://youtube.com{results[0]['url_suffix']}"
@@ -474,7 +474,7 @@ async def play(app: Client, message: Message):
 
         except Exception as e:
             await lel.edit(
-                "✧ **لم يتم العثور على الاغنية**\n\nاكتب الاسم بشكل صحيح."
+                "• **Song not found**\n\nwrite name correctly."
             )
             print(str(e))
             return
@@ -495,7 +495,7 @@ async def play(app: Client, message: Message):
 
         if (dur / 60) > DURATION_LIMIT:
             await lel.edit(
-                f"✧ مقطع الفيديو أطول من {DURATION_LIMIT} الدقائق غير مسموح بها!"
+                f"💡 Videos longer than {DURATION_LIMIT} minutes aren't allowed to play!"
             )
             return
         requested_by = message.from_user.first_name
@@ -519,7 +519,7 @@ async def play(app: Client, message: Message):
                     try:
                         if eta > 2:
                             lel.edit(
-                                f"جارى التحميل {title[:50]}\n\n✧ **حجم الملف :** {size}\n✧ **تقدم :** {percentage}\n✧ **السرعة :** {speed}\n✧ **الثواني :** {eta} ثانيه"
+                                f"ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ {title[:50]}\n\n**ғɪʟᴇ sɪᴢᴇ :** {size}\n**ᴘʀᴏɢʀᴇss :** {percentage}\n**sᴘᴇᴇᴅ :** {speed}\n**ᴇᴛᴀ :** {eta} sec"
                             )
                     except Exception as e:
                         pass
@@ -528,30 +528,30 @@ async def play(app: Client, message: Message):
                         flex[str(bytesx)] += 1
                         if eta > 2:
                             lel.edit(
-                                f"**جارى التحميل {title[:50]}\n\n✧ **حجم الملف :** {size}\n✧ **تقدم :** {percentage}\n✧ **السرعة :** {speed}\n✧ **الثواني :** {eta} ثانيه"
+                                f"**ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ :** {title[:50]}..\n\n**ғɪʟᴇ sɪᴢᴇ :** {size}\n**ᴘʀᴏɢʀᴇss :** {percentage}\n**sᴘᴇᴇᴅ :** {speed}\n**ᴇᴛᴀ :** {eta} sec"
                             )
                         print(
-                            f"✧ [{url_suffix}] تم التنزيل {percentage}\n✧ بسرعة {speed} \n✧ الثواني : {eta} ثانيه"
+                            f"[{url_suffix}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
                         )
                 if per > 500:
                     if flex[str(bytesx)] == 3:
                         flex[str(bytesx)] += 1
                         if eta > 2:
                             lel.edit(
-                                f"**جارى التحميل {title[:50]}\n\n✧ **حجم الملف :** {size}\n✧ **تقدم :** {percentage}\n✧ **السرعة :** {speed}\n✧ **الثواني :** {eta} ثانيه"
+                                f"**ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ** {title[:50]}...\n\n**ғɪʟᴇ sɪᴢᴇ :** {size}\n**ᴘʀᴏɢʀᴇss :** {percentage}\n**sᴘᴇᴇᴅ :** {speed}\n**ᴇᴛᴀ :** {eta} sec"
                             )
                         print(
-                            f"✧ [{url_suffix}] تم التنزيل {percentage}\n✧ بسرعة {speed} \n✧ الثواني : {eta} ثانيه"
+                            f"[{url_suffix}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
                         )
                 if per > 800:
                     if flex[str(bytesx)] == 4:
                         flex[str(bytesx)] += 1
                         if eta > 2:
                             lel.edit(
-                                f"**جارى التحميل {title[:50]}\n\n✧ **حجم الملف :** {size}\n✧ **تقدم :** {percentage}\n✧ **السرعة :** {speed}\n✧ **الثواني :** {eta} ثانيه"
+                                f"**ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ :** {title[:50]}....\n\n**ғɪʟᴇ sɪᴢᴇ :** {size}\n**ᴘʀᴏɢʀᴇss :** {percentage}\n**sᴘᴇᴇᴅ :** {speed}\n**ᴇᴛᴀ :** {eta} sec"
                             )
                         print(
-                            f"✧ [{url_suffix}] تم التنزيل {percentage}\n✧ بسرعة : {speed} \n✧ الثواني: {eta} ثانيه"
+                            f"[{url_suffix}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds"
                         )
             if d["status"] == "finished":
                 try:
@@ -560,9 +560,9 @@ async def play(app: Client, message: Message):
                     taken = "00:00"
                 size = d["_total_bytes_str"]
                 lel.edit(
-                    f"**انتهى التنزيل !!**\n\n✧ **{title[:50]}...\n\n✧** حجم الصوت : {size}**\n\n✧ **الوقت المستغرق : {taken} ثانيه"
+                    f"**Download Finished!!**\n\n**{title[:50]}...\n\n**Audio Size : {size}**\n■■■■■■■■■■ `100%`\n**Time taken: {taken} sec**\n\n<b> __Converting to ffmpeg__....</b>"
                 )
-                print(f"✧ [{url_suffix}] تم التنزيل في : {taken} ثانيه")
+                print(f"[{url_suffix}] Downloaded| Elapsed: {taken} seconds")
 
         loop = asyncio.get_event_loop()
         x = await loop.run_in_executor(None, download, url, my_hook)
@@ -572,7 +572,7 @@ async def play(app: Client, message: Message):
         position = await queues.put(message.chat.id, file=file_path)
         await message.reply_photo(
             photo="final.png",
-            caption="تم اضافتها لقائمة الانتظار {}\n•═════•| [ 𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪 ](https://t.me/JAVA_tlethon) |•═════•\n\n**📂 الاسم :**[{}]({})\n\n📈 **حالة التشغيل :** `انتظار`\n📌 **نوع التشغيل :** `موسيقي`\n👥 طلب : {}\n\n•═════•| [ 𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪 ](https://t.me/JAVA_tlethon) |•═════•".format(
+            caption="تم اضافتها لقائمة الانتظار {}\n•═════•| [ 𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪 ](https://t.me/JAVA_tlethon) |•═════•\n\n**📂 الاسم :** [{}]({})\n\n📈 **حالة التشغيل :** `انتظار`\n📌 **نوع التشغيل :** `موسيقي`\n👥 طلب : {}\n\n•═════•| [ 𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪 ](https://t.me/JAVA_tlethon) |•═════•".format(
                 position, title, url, message.from_user.mention()
             ),
         )
@@ -589,7 +589,7 @@ async def play(app: Client, message: Message):
             )
         except Exception:
             return await lel.edit(
-                "✧ خطأ في الانضمام إلى الدردشة الصوتية. تأكد من تمكين الدردشة الصوتية.\n\n✧ إذا كانت الإجابة بنعم ، فتأكد من أن حساب المساعد ليس محظورًا في مجموعتك أو متاحًا في مجموعتك!"
+                "✧ خطأ في الانضمام إلى الدردشة الصوتية. تأكد من تمكين الدردشة الصوتية.\n\n✧ او تأكد من أن حساب المساعد ليس محظورًا في مجموعتك أو متاحًا في مجموعتك!"
             )
 
 
@@ -598,7 +598,7 @@ async def play(app: Client, message: Message):
         await message.reply_photo(
             photo="final.png",
             reply_markup=keyboard,
-            caption="**تم التشغيل بنجاح \n•═════•| [𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪](https://t.me/JAVA_tlethon) |•═════•\n\n📁 **الاسم :** [{}]({})\n🖇 **الوقت :** `{duration}`\n📈 **حالة التشغيل :** `شغال`\n📌 **نوع التشغيل :** `موسيقي`\n👤 **مطلوبه بواسطة :** {}\nللمزيد من المعلومات : [اضغط هنا](https://t.me/JAVA_Supports)\n\n•═════•| [𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪](https://t.me/JAVA_tlethon) |•═════•".format(
+            caption="تم التشغيل بنجاح \n•═════•| [𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪](https://t.me/JAVA_tlethon) |•═════•\n\n📁 **الاسم :** [{}]({})\n🖇 **الوقت :** `{duration}`\n📈 **حالة التشغيل :** `شغال`\n📌 **نوع التشغيل :** `موسيقي`\n👤 **مطلوبه بواسطة :** {}\nللمزيد من المعلومات : [اضغط هنا](https://t.me/JAVA_Supports)\n\n•═════•| [𓆩𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀𓆪](https://t.me/JAVA_tlethon) |•═════•".format(
                 title, url, message.from_user.mention()
             ),
         )

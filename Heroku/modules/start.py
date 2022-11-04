@@ -21,7 +21,6 @@ TIME_DURATION_UNITS = (
     ("sec", 1),
 )
 
-IMG = ["https://telegra.ph/file/9cbae99908382932e51f0.png", "https://telegra.ph/file/9870433b0c155ecf2ad07.png", "https://telegra.ph/file/c6efbd77d1d931c45d0c2.jpg", "https://telegra.ph/file/f9d97a7cde8b79f4ab0a3.png"]
 HELP_TEXT = """
 مرحبا ! {}
 ➖➖➖➖➖➖➖➖➖➖➖➖➖➖
@@ -46,17 +45,16 @@ async def start_(client: Client, message: Message):
                     InlineKeyboardButton(
                         "𝐒𝐎𝐔𝐑𝐂𝐄 𝐉𝐀𝐕𝐀", url=f"https://t.me/{UPDATE}"),
                     InlineKeyboardButton(
-                        "المساعدة ⁉️", callback_data="others")
+                        "مساعده ⁉️", callback_data="others")
                 ]
            ]
         ),
     )
 
 
-
-@Client.on_message(command(["ping","البينج"]) & ~filters.edited)
+@Client.on_message(command(["ping"]) & ~filters.edited)
 async def ping_pong(client: Client, message: Message):
     start = time()
-    m_reply = await message.reply_text("✧ جاري حساب سرعة البوت...")
+    m_reply = await message.reply_text("جاري حساب سرعة البوت...👀")
     delta_ping = time() - start
-    await m_reply.edit_text("✧ سرعة البوت : \n✧ " f"`{delta_ping * 1000:.3f} MS`")
+    await m_reply.edit_text("بينج البوت \n" f"`{delta_ping * 1000:.3f} ms`")
